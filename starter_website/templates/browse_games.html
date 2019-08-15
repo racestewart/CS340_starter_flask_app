@@ -1,0 +1,24 @@
+<html>
+<head><title>Browse games</title></head>
+<h3><a href='/add_new_games'>Add new games</a></h3>
+
+<h3>Current games</h3>
+<table border='1'>
+    <thead>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Price</th>
+    </thead>
+    <tbody>
+      {% for r in rows %}
+      <tr>
+        <td> {{ r.1 }}</td>
+        <td> {{ r[2] }}</td>
+        <td> {{ r[3] }}</td>
+        <td> <input type='button' name='Update' value='Update' onclick="window.location = '/update_games/{{r[4]}}'"> </td>
+        <td> <input type='button' name='Delete' value='Delete' onclick="window.location = '/delete_games/{{r[4]}}'"> </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+</html>

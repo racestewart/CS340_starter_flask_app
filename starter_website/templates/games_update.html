@@ -1,0 +1,9 @@
+<h3>Add new games!</h3>
+<form id="update_games" action="/update_games/{{game[0]}}" method="post">
+  <!-- character_id {{ character_id }} -->
+  <input type="hidden" name="id" value = "{{ game[0] }}">
+  Name: <input type="text" name="name" value = "{{ game[1] }}"><br>
+  Date: <input type="text" name="date" value = "{{ game[2] }}" ><br>
+  <input type="submit" value="Submit">
+ </form>
+<br/>

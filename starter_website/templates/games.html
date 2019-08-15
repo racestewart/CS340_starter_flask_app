@@ -1,0 +1,51 @@
+<html>
+{% for eachfoo in foo %}
+{{eachfoo}}
+{% endfor %}
+<h3>Add new games:</h3>
+<form id="addgame" action="/games" method="post">
+    Name: <input type="text" name="name"><br>
+    Date: <input type="text" name="date"><br>
+    Price: <input type="text" name="price"><br>
+    <input type="submit" value="Submit">
+ </form>
+<br/>
+
+<form id='filter_games' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Filter by name </label>
+    <select id='name_filter' name="name">
+        {% for name in names %}
+        <option value="{{game.id}}">{{game.name}}</option>
+        {% endfor %}
+    </select><br>
+    <input type="button" value="Filter" onclick="filterGamesByName()">
+</form>
+
+<form id='search_games' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search games for name starting with:</label>
+    <input id='name_search_string' type='text' name='name_search_string' value=''>
+    <input type="button" value="Search" onclick="searchGamesByName()">
+</form>
+
+<h3>Current games:</h3>
+<table border='1'>
+    <thead>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Price</th>
+    </thead>
+    <tbody>
+        {% for game in games %}
+        <tr>
+            <td>{{game.name}}</td>
+            <td>{{game.date}}</td>
+            <td>{{game.price}}</td>
+            <td><button onclick="deleteGame({{game.id}})">Delete</button></td>
+            <td><a href="/games/{{game.id}}">Update</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</html>

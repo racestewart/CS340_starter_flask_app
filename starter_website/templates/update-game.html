@@ -1,0 +1,9 @@
+<html>
+<h1>Update {{Game.name}} </h1>
+<form id="update-games" action="/update_games" method="post">
+    Name: <input type="text" name="name" value="{{Game.name}}"><br>
+    Date: <input type="text" name="date" value="{{Game.date}}"><br>
+    Price: <input type="text" name="price" value="{{Game.price}}"><br>
+</form>
+<button onclick="updateGames({{Game.id}})">Update</button>
+</html>
