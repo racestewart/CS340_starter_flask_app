@@ -1,5 +1,4 @@
-from flask import Flask, render_template
-from flask import request, redirect
+from flask import Flask, render_template, request, redirect
 from db_connector.db_connector import connect_to_database, execute_query
 #create the web application
 webapp = Flask(__name__)
@@ -23,15 +22,16 @@ def browse_games():
 def add_new_games():
     db_connection = connect_to_database()
     if request.method == 'POST':
-        print("Add new games!");
-        name = request.form['Name']
-        date = request.form['Date']
-        price = request.form['Price']
-        query = "INSERT INTO Game (Name, Date, Price) VALUES (%s,%s,%s);"
+        print("this is the post method");
+        name = request.values.get('name')
+        date = request.values.get('release_date')
+        price = request.values.get('price')
+        query = "INSERT INTO Game (name, release_date, price) VALUES (%s,%s,%s);"
         data = (name, date, price)
         execute_query(db_connection, query, data)
         return ('Game added!');
     else:
+        print("this is the get method");
         query = "SELECT ID, Name from Game;"
         result = execute_query(db_connection, query).fetchall();
         print(result)
